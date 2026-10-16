@@ -1,0 +1,13 @@
+{
+  "name": "Minha Agenda",
+  "short_name": "Minha Agenda",
+  "description": "Tarefas, compromissos e anotações pessoais",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f3f7fc",
+  "theme_color": "#1769d2",
+  "icons": [
+    {"src":"icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}
+  ]
+}

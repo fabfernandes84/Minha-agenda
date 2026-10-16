@@ -1,0 +1,26 @@
+MINHA AGENDA — COMO PUBLICAR DE GRAÇA PELO CELULAR ANDROID
+
+Arquivos:
+- index.html: aplicativo
+- manifest.json: configuração para instalação como PWA
+- sw.js: cache/offline básico
+- icon.svg: ícone
+
+OPÇÃO DE HOSPEDAGEM: GitHub Pages (gratuito)
+1. No Chrome do celular, acesse https://github.com e crie uma conta ou entre.
+2. Crie um repositório novo chamado exatamente: minha-agenda
+3. Deixe Public (público) e crie o repositório.
+4. Dentro do repositório, toque em Add file > Upload files.
+5. Extraia o ZIP primeiro, se necessário, e envie os QUATRO arquivos para a raiz do repositório: index.html, manifest.json, sw.js e icon.svg. Não envie a pasta inteira como uma pasta aninhada.
+6. Toque em Commit changes.
+7. Abra Settings do repositório > Pages.
+8. Em Build and deployment, selecione Deploy from a branch. Branch: main; folder: /(root). Salve.
+9. Aguarde alguns minutos e volte a Settings > Pages. O endereço será parecido com https://SEU-USUARIO.github.io/minha-agenda/ (use o link real mostrado pelo GitHub).
+10. Abra esse endereço no Chrome Android. No menu ⋮, escolha “Instalar app” ou “Adicionar à tela inicial”.
+
+IMPORTANTE
+- O aplicativo guarda os dados localmente no navegador do aparelho. Não sincroniza automaticamente entre aparelhos e não tem login.
+- Exporte o backup na própria aplicação regularmente. Se limpar dados do Chrome, trocar de aparelho ou usar outro navegador, os dados locais podem não estar disponíveis.
+- Este app não envia notificações push nem alarmes garantidos em segundo plano. Os campos de data e horário organizam compromissos, mas não disparam lembretes automáticos.
+- Como o repositório será público, o código do aplicativo fica visível. As tarefas/anotações não são publicadas no GitHub; elas ficam no armazenamento local do navegador.
+- Se atualizar os arquivos no GitHub, recarregue o app. Se parecer desatualizado, feche e abra de novo ou limpe o cache do site.
