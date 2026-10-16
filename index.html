@@ -19,7 +19,7 @@ main{max-width:760px;margin:0 auto;padding:16px 14px 40px}
 h2{font-size:17px;margin:0 0 12px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.field{display:flex;flex-direction:column;gap:5px}.field.full{grid-column:1/-1}label{font-size:12px;color:var(--muted);font-weight:700}input,select,textarea{font:inherit;border:1px solid #cbd7e5;border-radius:10px;padding:11px;background:#fff;color:var(--ink);width:100%;min-width:0}textarea{resize:vertical;min-height:76px}
 button{font:inherit;cursor:pointer;border:0;border-radius:11px;padding:10px 13px;font-weight:700}.primary{background:var(--blue);color:white}.secondary{background:#e9f2ff;color:var(--blue)}.danger{background:#fff0f0;color:var(--red)}.small{padding:7px 9px;font-size:13px}.form-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
 .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}.stat{background:white;border:1px solid var(--line);border-radius:14px;padding:12px}.stat strong{display:block;font-size:22px;color:var(--blue)}.stat span{font-size:12px;color:var(--muted)}
-.filters{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}.task{display:flex;gap:11px;align-items:flex-start;padding:13px 0;border-bottom:1px solid #edf1f6}.task:last-child{border-bottom:0}.task input[type=checkbox]{width:21px;height:21px;margin:2px 0 0;accent-color:var(--blue);flex-shrink:0}.taskbody{flex:1;min-width:0}.tasktitle{font-weight:750;overflow-wrap:anywhere}.task.done .tasktitle{text-decoration:line-through;color:#7b8999}.meta{font-size:12px;color:var(--muted);margin-top:5px;display:flex;gap:6px;flex-wrap:wrap}.pill{display:inline-block;border-radius:999px;padding:3px 8px;background:#edf4ff;color:#1755a3;font-size:11px;font-weight:750}.pill.high{background:#fff0e5;color:#9c4a00}.pill.urgent{background:#ffebee;color:#b4232c}.taskactions{display:flex;gap:5px;flex-wrap:wrap;margin-top:8px}.empty{text-align:center;color:var(--muted);padding:22px 8px}.muted{color:var(--muted);font-size:13px}.hidden{display:none!important}.note{background:#fff8df;border:1px solid #f0e2a9;padding:10px 12px;border-radius:12px;font-size:13px}.footer{text-align:center;color:var(--muted);font-size:12px;margin:20px 0}.installhint{font-size:13px;opacity:.95;margin-top:12px}
+.filters{display:grid;grid-template-columns:1fr;gap:8px;margin-bottom:12px}.quickfilters{display:flex;gap:7px;overflow-x:auto;padding:2px 0 10px;margin-bottom:3px}.quicktab{flex:0 0 auto;border:1px solid var(--line);background:#fff;color:var(--blue);border-radius:999px;padding:9px 12px;font-size:13px;font-weight:750}.quicktab.active{background:var(--blue);color:#fff;border-color:var(--blue)}.task{display:flex;gap:11px;align-items:flex-start;padding:13px 0;border-bottom:1px solid #edf1f6}.task:last-child{border-bottom:0}.task input[type=checkbox]{width:21px;height:21px;margin:2px 0 0;accent-color:var(--blue);flex-shrink:0}.taskbody{flex:1;min-width:0}.tasktitle{font-weight:750;overflow-wrap:anywhere}.task.done .tasktitle{text-decoration:line-through;color:#7b8999}.meta{font-size:12px;color:var(--muted);margin-top:5px;display:flex;gap:6px;flex-wrap:wrap}.pill{display:inline-block;border-radius:999px;padding:3px 8px;background:#edf4ff;color:#1755a3;font-size:11px;font-weight:750}.pill.high{background:#fff0e5;color:#9c4a00}.pill.urgent{background:#ffebee;color:#b4232c}.taskactions{display:flex;gap:5px;flex-wrap:wrap;margin-top:8px}.empty{text-align:center;color:var(--muted);padding:22px 8px}.muted{color:var(--muted);font-size:13px}.hidden{display:none!important}.note{background:#fff8df;border:1px solid #f0e2a9;padding:10px 12px;border-radius:12px;font-size:13px}.footer{text-align:center;color:var(--muted);font-size:12px;margin:20px 0}.installhint{font-size:13px;opacity:.95;margin-top:12px}
 @media(max-width:430px){.grid{grid-template-columns:1fr 1fr}.stats{gap:6px}.stat{padding:10px}.stat strong{font-size:20px}.filters{grid-template-columns:1fr 1fr}}
 </style>
 </head>
@@ -56,9 +56,15 @@ button{font:inherit;cursor:pointer;border:0;border-radius:11px;padding:10px 13px
   </div>
   <div class="card">
    <h2>Minha lista</h2>
+   <div class="quickfilters" aria-label="Filtrar tarefas">
+    <button class="quicktab active" type="button" data-filter="active">Pendentes</button>
+    <button class="quicktab" type="button" data-filter="today">Para hoje</button>
+    <button class="quicktab" type="button" data-filter="completed">Concluídas</button>
+    <button class="quicktab" type="button" data-filter="all">Todas</button>
+    <button class="quicktab" type="button" data-filter="overdue">Atrasadas</button>
+   </div>
    <div class="filters">
-    <div class="field"><label for="filterStatus">EXIBIR</label><select id="filterStatus"><option value="active">Pendentes</option><option value="all">Todas</option><option value="today">Para hoje</option><option value="overdue">Atrasadas</option></select></div>
-    <div class="field"><label for="filterCategory">CATEGORIA</label><select id="filterCategory"><option value="">Todas</option><option>Trabalho</option><option>Pessoal</option><option>Estudos</option><option>Saúde</option><option>Financeiro</option><option>Casa</option><option>Outro</option></select></div>
+    <div class="field"><label for="filterCategory">CATEGORIA</label><select id="filterCategory"><option value="">Todas as categorias</option><option>Trabalho</option><option>Pessoal</option><option>Estudos</option><option>Saúde</option><option>Financeiro</option><option>Casa</option><option>Outro</option></select></div>
    </div>
    <div id="taskList"></div>
   </div>
@@ -80,6 +86,7 @@ button{font:inherit;cursor:pointer;border:0;border-radius:11px;padding:10px 13px
 <script>
 const $=id=>document.getElementById(id);
 const STORE='minhaAgenda.v1';
+let currentFilter='active';
 let db={tasks:[],notes:[]};
 try{const saved=localStorage.getItem(STORE);if(saved)db=Object.assign(db,JSON.parse(saved));}catch(e){}
 const today=()=>{const d=new Date();return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`};
@@ -90,19 +97,21 @@ function dateLabel(d){if(!d)return 'Sem data';let [y,m,day]=d.split('-');return 
 function isDone(t){return !!t.completed}
 function render(){
  const active=db.tasks.filter(t=>!isDone(t));$('totalCount').textContent=active.length;$('todayCount').textContent=active.filter(t=>t.date===today()).length;$('doneCount').textContent=db.tasks.filter(isDone).length;
- const status=$('filterStatus').value,cat=$('filterCategory').value;
- let tasks=db.tasks.filter(t=>!isDone(t));
- if(status==='today')tasks=tasks.filter(t=>t.date===today());
- else if(status==='overdue')tasks=tasks.filter(t=>t.date && t.date<today());
+ const status=currentFilter,cat=$('filterCategory').value;
+ let tasks=db.tasks.slice();
+ if(status==='today')tasks=tasks.filter(t=>!isDone(t)&&t.date===today());
+ else if(status==='overdue')tasks=tasks.filter(t=>!isDone(t)&&t.date&&t.date<today());
  else if(status==='active')tasks=tasks.filter(t=>!isDone(t));
+ else if(status==='completed')tasks=tasks.filter(t=>isDone(t));
  if(cat)tasks=tasks.filter(t=>t.category===cat);
+ document.querySelectorAll('.quicktab').forEach(b=>b.classList.toggle('active',b.dataset.filter===currentFilter));
  tasks.sort((a,b)=>(a.date||'9999').localeCompare(b.date||'9999')||(a.time||'99:99').localeCompare(b.time||'99:99'));
  $('taskList').innerHTML=tasks.length?tasks.map(taskHtml).join(''):'<div class="empty">Nenhuma tarefa nesta visualização. ✨</div>';
  const hist=db.tasks.filter(isDone).sort((a,b)=>(b.completedAt||'').localeCompare(a.completedAt||''));
  $('historyList').innerHTML=hist.length?hist.map(t=>`<div class="task"><div class="taskbody"><div class="tasktitle">${esc(t.title)}</div><div class="meta">Concluída em ${esc(t.completedAt||'')} · ${esc(t.category||'Outro')}</div>${t.details?`<div class="muted">${esc(t.details)}</div>`:''}<div class="taskactions"><button class="secondary small" onclick="reopenTask('${t.id}')">Reabrir</button><button class="danger small" onclick="deleteTask('${t.id}')">Apagar</button></div></div></div>`).join(''):'<div class="empty">Ainda não há tarefas concluídas.</div>';
  $('noteList').innerHTML=db.notes.length?db.notes.slice().sort((a,b)=>b.updated.localeCompare(a.updated)).map(n=>`<div class="task"><div class="taskbody"><div class="tasktitle">${esc(n.title)}</div><div class="meta">Atualizada em ${esc(n.updated)}</div><div style="white-space:pre-wrap;margin-top:7px">${esc(n.body)}</div><div class="taskactions"><button class="secondary small" onclick="editNote('${n.id}')">Editar</button><button class="danger small" onclick="deleteNote('${n.id}')">Apagar</button></div></div></div>`).join(''):'<div class="empty">Nenhuma anotação salva.</div>';
 }
-function taskHtml(t){const overdue=t.date&&t.date<today();return `<div class="task"><input type="checkbox" aria-label="Concluir ${esc(t.title)}" onchange="completeTask('${t.id}',this.checked)"><div class="taskbody"><div class="tasktitle">${esc(t.title)}</div><div class="meta"><span>${esc(dateLabel(t.date))}${t.time?' · '+esc(t.time):''}</span><span class="pill">${esc(t.category||'Outro')}</span><span class="pill ${t.priority==='Urgente'?'urgent':t.priority==='Alta'?'high':''}">${esc(t.priority||'Normal')}</span>${t.repeat&&t.repeat!=='none'?`<span class="pill">↻ ${t.repeat==='daily'?'Diária':t.repeat==='weekly'?'Semanal':'Mensal'}</span>`:''}${overdue?'<span class="pill urgent">Atrasada</span>':''}</div>${t.details?`<div style="white-space:pre-wrap;margin-top:7px;font-size:14px">${esc(t.details)}</div>`:''}<div class="taskactions"><button class="secondary small" onclick="editTask('${t.id}')">Editar</button><button class="danger small" onclick="deleteTask('${t.id}')">Apagar</button></div></div></div>`}
+function taskHtml(t){const overdue=t.date&&t.date<today();return `<div class="task ${isDone(t)?'done':''}"><input type="checkbox" ${isDone(t)?'checked':''} aria-label="${isDone(t)?'Reabrir':'Concluir'} ${esc(t.title)}" onchange="completeTask('${t.id}',this.checked)"><div class="taskbody"><div class="tasktitle">${esc(t.title)}</div><div class="meta"><span>${esc(dateLabel(t.date))}${t.time?' · '+esc(t.time):''}</span><span class="pill">${esc(t.category||'Outro')}</span><span class="pill ${t.priority==='Urgente'?'urgent':t.priority==='Alta'?'high':''}">${esc(t.priority||'Normal')}</span>${t.repeat&&t.repeat!=='none'?`<span class="pill">↻ ${t.repeat==='daily'?'Diária':t.repeat==='weekly'?'Semanal':'Mensal'}</span>`:''}${overdue?'<span class="pill urgent">Atrasada</span>':''}</div>${t.details?`<div style="white-space:pre-wrap;margin-top:7px;font-size:14px">${esc(t.details)}</div>`:''}<div class="taskactions"><button class="secondary small" onclick="editTask('${t.id}')">Editar</button><button class="danger small" onclick="deleteTask('${t.id}')">Apagar</button></div></div></div>`}
 function resetTaskForm(){ $('taskForm').reset();$('taskId').value='';$('formTitle').textContent='＋ Nova tarefa ou compromisso';$('category').value='Trabalho';$('priority').value='Normal';$('repeat').value='none';}
 $('taskForm').addEventListener('submit',e=>{e.preventDefault();const id=$('taskId').value;const old=db.tasks.find(t=>t.id===id);const task={id:id||uid(),title:$('title').value.trim(),date:$('date').value,time:$('time').value,category:$('category').value,priority:$('priority').value,repeat:$('repeat').value,details:$('details').value.trim(),completed:old?.completed||false,completedAt:old?.completedAt||'',created:old?.created||new Date().toISOString()};if(id)db.tasks=db.tasks.map(t=>t.id===id?task:t);else db.tasks.push(task);resetTaskForm();save();});
 $('cancelEdit').onclick=resetTaskForm;
@@ -110,7 +119,7 @@ window.editTask=id=>{const t=db.tasks.find(x=>x.id===id);if(!t)return;$('taskId'
 window.completeTask=(id,checked)=>{const t=db.tasks.find(x=>x.id===id);if(!t)return;if(checked){t.completed=true;t.completedAt=today();if(t.repeat&&t.repeat!=='none'&&t.date){let d=new Date(t.date+'T12:00:00');if(t.repeat==='daily')d.setDate(d.getDate()+1);if(t.repeat==='weekly')d.setDate(d.getDate()+7);if(t.repeat==='monthly')d.setMonth(d.getMonth()+1);db.tasks.push({...t,id:uid(),date:`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`,completed:false,completedAt:'',created:new Date().toISOString()});}}else{t.completed=false;t.completedAt='';}save();};
 window.reopenTask=id=>{const t=db.tasks.find(x=>x.id===id);if(t){t.completed=false;t.completedAt='';save();}};
 window.deleteTask=id=>{if(confirm('Apagar esta tarefa?')){db.tasks=db.tasks.filter(t=>t.id!==id);save();}};
-$('filterStatus').onchange=render;$('filterCategory').onchange=render;
+document.querySelectorAll('.quicktab').forEach(b=>b.addEventListener('click',()=>{currentFilter=b.dataset.filter;render();}));$('filterCategory').onchange=render;
 $('clearHistory').onclick=()=>{if(confirm('Apagar definitivamente todas as tarefas concluídas?')){db.tasks=db.tasks.filter(t=>!t.completed);save();}};
 $('noteForm').addEventListener('submit',e=>{e.preventDefault();const id=$('noteId').value;const note={id:id||uid(),title:$('noteTitle').value.trim(),body:$('noteBody').value.trim(),updated:new Date().toLocaleDateString('pt-BR')};if(id)db.notes=db.notes.map(n=>n.id===id?note:n);else db.notes.push(note);$('noteForm').reset();$('noteId').value='';save();});
 $('clearNote').onclick=()=>{$('noteForm').reset();$('noteId').value='';};
